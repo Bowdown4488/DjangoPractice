@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-from .forms import TestForm
+from .forms import TestForm,RawFormTest
+from .models import Test
 # Create your views here.
 
 def home_view(request, *args, **kwargs):
@@ -28,4 +29,24 @@ def form_view (request):
     }
     return render(request, "form.html", my_context)
 
+def raw_html_form_view (request):
+    if request.method == "POST":
+        title = request.POST
+        print(title)
 
+    my_context = {}
+    return render(request, "raw_html_forms.html", my_context)
+
+def raw_form_view (request):
+    rawForm = RawFormTest()
+    if request.method == "POST":
+        rawForm = RawFormTest(request.POST)  #Validation erors (required field)
+        if rawForm.is_valid():
+            print(rawForm.cleaned_data) #validated data
+            Test.objects.create(**rawForm.cleaned_data) #error but add ** to pass as argse
+        else:
+            print(rawForm.errors)
+    context = {  
+        'rawForm':rawForm
+    }
+    return render(request, "raw_form.html", context)

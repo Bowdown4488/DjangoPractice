@@ -2,6 +2,11 @@ from django import forms
 from .models import Test
 
 class TestForm(forms.ModelForm):
+    #Fields can be overridden
+    #Django widgets: https://docs.djangoproject.com/en/3.0/ref/forms/widgets/
+    # title = forms.CharField(label='', widget=forms.TextInput(
+    #     attrs={"placeholder": "your title"}))
+
     class Meta:
         model = Test
         fields = [
@@ -10,6 +15,11 @@ class TestForm(forms.ModelForm):
             'price',
             'summary',
         ]
+
+class RawFormTest(forms.Form):
+    title = forms.CharField()
+    description = forms.CharField()
+    price = forms.DecimalField()
 
 #Source: https://www.quora.com/Why-do-we-use-the-class-Meta-inside-the-ModelForm-in-Django
 #The Meta class of Models and ModelForms can be thought of as something similar to a class or function decorator. The Meta class is referenced 
