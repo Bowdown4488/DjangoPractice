@@ -40,8 +40,7 @@ INSTALLED_APPS = [
 
     #own apps
 
-    'myapp',
-    'pages'
+    'myapp'
 
     #commands python manage.py migrations -> python manage.py migrate
     #when changing models
