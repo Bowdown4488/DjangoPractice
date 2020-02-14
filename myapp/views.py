@@ -50,3 +50,17 @@ def raw_form_view (request):
         'rawForm':rawForm
     }
     return render(request, "raw_form.html", context)
+
+def get_data (request):
+    forms = Test.objects.all() #search all
+    context = {
+        'forms': forms
+    }
+    return render(request, "get_data.html", context)
+
+def get_data_one (request, id):
+    forms = Test.objects.get(id=id) #search specific
+    context = {
+        'forms': forms
+    }
+    return render(request, "get_data_specific.html", context)  

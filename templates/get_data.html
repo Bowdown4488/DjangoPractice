@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    
+<h1>Data Page</h1>
+
+{% for form in forms %}
+
+<h3>{{ form.title }}</h3>
+<p>{{ form.description }}</p>
+
+{% endfor %}
+
+{% endblock %}

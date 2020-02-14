@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
  
-from myapp.views import home_view,next_view,form_view,raw_html_form_view,raw_form_view
+from myapp.views import home_view,next_view,form_view,raw_html_form_view,raw_form_view,get_data,get_data_one
 
 urlpatterns = [
     path('', home_view, name='home'),
@@ -24,5 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('form/', form_view, name='form'),
     path('rawForm/', raw_form_view, name='rawForm'),
-    path('rawHtmlForm/', raw_html_form_view, name='rawHtmlForm')
+    path('rawHtmlForm/', raw_html_form_view, name='rawHtmlForm'),
+    path('getForm/', get_data, name='getForm'),
+    path('getForm/<int:id>/', get_data_one, name='getFormOne')
 ]
